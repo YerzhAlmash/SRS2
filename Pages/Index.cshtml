@@ -1,0 +1,87 @@
+﻿@page
+@model IndexModel
+@{ ViewData["Title"] = "Book shop"; }
+@using Microsoft.AspNetCore.Http;
+<div class="text-center">
+    <h1 class="display-4">Book Shop</h1>
+</div>
+
+@if (Model.NameState.Equals("OK") && Model.NameState != null)
+{
+<div class="text-center">
+    <h1>Welcome @HttpContext.Session.GetString("Name"), in our book shop in  @HttpContext.Session.GetString("City")<br>Our call Center: 8-7112-25-64-18<br>email:"Book.Shop.Center@gmail.com"</h1>
+    <form method="post" asp-page-handler="Logout">
+        <input type="submit" value="Logout" />
+    </form>
+    <table border="3">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Author</th>
+                <th>Janr</th>
+                <th>img</th>
+                <th>Price</th>
+                <th>Avaiable</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Golodnye igry</td>
+                <td>Siuzen Kollinz</td>
+                <td>Fantastika</td>
+                <td><img src="~/img/Golodnye igry.jpg" /></td>
+                <td>3200</td>
+                <td>True</td>
+            </tr>
+        </tbody>
+        <tbody>
+            <tr>
+                <td>Voina i mir</td>
+                <td>Lev Tolstoi</td>
+                <td>Roman</td>
+                <td><img src="~/img/Voina i mir.jpg" /></td>
+                <td>4500</td>
+                <td>True</td>
+            </tr>
+
+        </tbody>
+        <tbody>
+            <tr>
+                <td>Dumai i bogatei
+                <td>Napoleon Hill</td>
+                <td>Proza</td>
+                <td><img src="~/img/Dumai i bogatei.jpg" /></td>
+                <td>2900</td>
+                <td>False</td>
+            </tr>
+        </tbody>
+    </table>
+
+</div> }
+
+else
+{
+<div class="text-center">
+    <form method="post">
+        Name:<input type="text" name="n" /><br />
+        City:<input type="text" name="c" /><br />
+        <input type="submit" />
+
+    </form>
+</div>
+
+                <div>
+                    @{ ViewData["Title"] = "Home Page"; }
+                    @{ string[] cities = new string[] { "Almaty", "Astana", "Oral" };
+                        string[] countries = new string[] { "Book World", "Book fairy tale", "Memories" }; }
+                    @using HtmlHelpersApp.App_Code
+                    <h3>Cities</h3>
+                    @Html.CreateList(cities)<br />
+                    <h3>Our Branches</h3>
+                    <!-- или можно вызвать так -->
+                    @ListHelper.CreateList(Html, countries)
+                </div>
+
+                                <div class="text-center">
+                                    <img src="~/img/Fhoto Bibl.jpg" />
+                                </div>}
